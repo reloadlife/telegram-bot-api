@@ -1,7 +1,7 @@
 FROM alpine:3.7 as BUILD
 
 WORKDIR /src
-
+COPY . ./src/
 RUN apk update
 RUN apk upgrade
 RUN apk add --update alpine-sdk linux-headers git zlib-dev openssl-dev gperf cmake
