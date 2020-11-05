@@ -1,14 +1,17 @@
 FROM alpine:3.7 as BUILD
 
 WORKDIR /src
-COPY . ./src/
+COPY . /src/
 RUN apk update
 RUN apk upgrade
 RUN apk add --update alpine-sdk linux-headers git zlib-dev openssl-dev gperf cmake
 RUN mkdir build
-RUN cd build
-RUN cd pwd
-RUN cd ls -la
+RUN cd build 
+
+WORKDIR /src/build
+
+RUN pwd
+RUN ls -la
 RUN export CXXFLAGS=""
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=.. ..
 RUN cmake --build . --target install
